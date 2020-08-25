@@ -180,33 +180,6 @@ setwd(workingDir)
 
 require('doParallel')
 require('foreach')
-require('GEOquery')
-require('org.Hs.eg.db')
-require('hgu133a.db')
-require('hgu133acdf')
-require('affy')
-require('affycoretools')
-require('annotate')
-require('limma')
-require('glmnet')
-require('c060')
-require('dplyr')
-require('reshape2')
-require('proxy')
-require('cba')
-require('sva')
-require('pathifier')
-require('princurve')
-require('precrec')
-require('pROC')
-require('Epi')
-require('pamr')
-require('MetaDE')
-require('pheatmap')
-require('colorRamps')
-require('ggplot2')
-require('plot3d')
-require('BiocParallel')
 
 ## For parallel processing
 detectCores()
@@ -229,7 +202,8 @@ load(&quot;pp.Cohorts.RData&quot;)
 ## Process particular dataset in R/Bioconductor.
 ## For each study, data set were pre-processed using procedures outlined in a paper by Hughey et al.(2015)
 ## For example, if study data type is affy_series_matrix or series_matrix, You can access the series_matrix information with the following code
-library('GEOquery')
+require('GEOquery'); require('org.Hs.eg.db'); require('hgu133a.db'); require('hgu133acdf'); require('affy'); require('affycoretools'); require('annotate'); require('dplyr'); require('reshape2')
+require('proxy'); require('MetaDE')
 curr.study.cohort &lt;- &quot;GSEnumber&quot;
 gsedat &lt;- getGEO(curr.study.cohort, GSEMatrix = T) ## ## Get the dataset from GEO
 datExpr &lt;- exprs(gsedat[[1]]) ## Expression data
@@ -321,6 +295,8 @@ studyMetadata[, 'discovery'] = studyMetadata[, 'discovery'] == 1
 studyMetadata[, 'validation'] = studyMetadata[, 'validation'] == 1
 rownames(sampleMetadataTmp) = sampleMetadataTmp[, 'sample']
 sampleMetadata = sampleMetadataTmp[sampleMetadataTmp[, 'study'] %in% studyMetadata[, 'study'], ]
+require('glmnet'); require('c060'); require('cba'); require('sva'); require('pathifier'); require('precrec'); require('pROC'); require('Epi'); require('pamr')
+require('pheatmap'); require('colorRamps'); require('ggplot2'); require('plot3d')
 
 ematMergedDiscoveryAllClasses = mergeStudyData(ematList[studyMetadata[studyMetadata[, 'discovery'], 'study']], sampleMetadata = sampleMetadata, covariateName = NA)
 dim(ematMergedDiscoveryAllClasses)
